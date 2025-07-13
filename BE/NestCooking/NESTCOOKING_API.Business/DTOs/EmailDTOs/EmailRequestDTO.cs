@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.DTOs.EmailDTOs
 {
-    internal class EmailRequestDTO
+    public class EmailRequestDTO
     {
+        public string From { get; set; } = null;
+        public string SmtpServer { get; set; } = null;
+        public int Port { get; set; }
+        public string UserName { get; set; } = null;
+        public string Password { get; set; } = null;
+
+
     }
 }

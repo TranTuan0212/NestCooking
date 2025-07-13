@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.Exceptions
 {
-    internal class EmailNotConfirmedException
+    public class EmailNotConfirmedException : Exception
     {
+        public EmailNotConfirmedException(string message) : base(message) { }
+
     }
 }

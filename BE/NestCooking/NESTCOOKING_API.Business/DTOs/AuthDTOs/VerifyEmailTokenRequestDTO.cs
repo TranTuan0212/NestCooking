@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.DTOs.AuthDTOs
 {
-    internal class VerifyEmailTokenRequestDTO
+    public class VerifyEmailTokenRequestDTO
     {
+        public string Token { get; set; }
+        public string Email { get; set; }
     }
 }

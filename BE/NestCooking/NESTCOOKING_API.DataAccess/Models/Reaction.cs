@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.DataAccess.Models
 {
-    internal class Reaction
+    public class Reaction
     {
+        [Key]
+        public string Id { get; set; } = null!;
+        public string Emoji { get; set; } = null!;
+
     }
 }

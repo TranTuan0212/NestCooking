@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.DTOs.UserDTOs
 {
-    internal class ChangePasswordDTO
+    public class ChangePasswordDTO
     {
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string ConfirmPassword { get; set; }
+
     }
 }
