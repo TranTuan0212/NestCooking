@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.DTOs.AuthDTOs
 {
-    internal class OAuth2RequestDTO
+    public class OAuth2RequestDTO
     {
+        public string AccessToken { get; set; }
     }
 }

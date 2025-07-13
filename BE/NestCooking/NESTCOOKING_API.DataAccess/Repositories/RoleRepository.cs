@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NESTCOOKING_API.DataAccess.Data;
 using NESTCOOKING_API.DataAccess.Repositories.IRepositories;
 using System;

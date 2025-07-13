@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.DTOs.AuthDTOs
 {
-    internal class ResetPasswordDTO
+    public class ResetPasswordDTO
     {
+        public string Identifier { get; set; } = null!;
     }
 }

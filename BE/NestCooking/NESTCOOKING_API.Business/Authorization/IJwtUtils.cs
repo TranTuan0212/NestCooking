@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using NESTCOOKING_API.DataAccess.Models;
+using NESTCOOKING_API.DataAccess.Repositories.IRepositories;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;

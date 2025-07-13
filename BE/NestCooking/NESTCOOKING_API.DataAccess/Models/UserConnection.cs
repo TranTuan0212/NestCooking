@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.DataAccess.Models
 {
-    internal class UserConnection
+    public class UserConnection
     {
+        public string UserId { get; set; } = null!;
+        public string FollowingUserId { get; set; } = null!;
     }
 }

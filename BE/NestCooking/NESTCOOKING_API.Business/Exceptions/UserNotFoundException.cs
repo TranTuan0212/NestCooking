@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NESTCOOKING_API.Business.Exceptions
 {
-    internal class UserNotFoundException
-    {
-    }
+    //public class UserNotFoundException : Exception
+    //{
+    //    public UserNotFoundException() : base(AppString.UserNotFoundMessage) { }
+    //}
 }

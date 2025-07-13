@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using NESTCOOKING_API.DataAccess.Repositories.IRepositories;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace NESTCOOKING_API.DataAccess.Repositories
 
             var response = await client.GetAsync($"https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture&access_token={accessToken}");
 
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(AppString.InvalidTokenErrorMessage);
+            //if (!response.IsSuccessStatusCode)
+            //    throw new Exception(AppString.InvalidTokenErrorMessage);
 
             var content = await response.Content.ReadAsStringAsync();
             var result = JObject.Parse(content);
@@ -36,10 +37,10 @@ namespace NESTCOOKING_API.DataAccess.Repositories
 
             var response = await client.GetAsync($"https://www.googleapis.com/oauth2/v3/userinfo?access_token={accessToken}");
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception(AppString.InvalidTokenErrorMessage);
-            }
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    throw new Exception(AppString.InvalidTokenErrorMessage);
+            //}
 
             var content = await response.Content.ReadAsStringAsync();
             var result = JObject.Parse(content);
