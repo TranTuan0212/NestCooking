@@ -165,5 +165,138 @@ namespace NESTCOOKING_API.Presentation.Controllers
                 return BadRequest(ResponseDTO.BadRequest(error.Message));
             }
         }
+
+        [HttpPost("reset-password/verify-identifier")]
+        public async Task<IActionResult> VerifyIdentifierResetPassword([FromBody] ResetPasswordDTO resetPasswordDTO)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(resetPasswordDTO.Identifier))
+                {
+                    return BadRequest(ResponseDTO.BadRequest(message: AppString.RequestErrorMessage));
+                }
+
+                var result = await _authService.VerifyIdentifierResetPassword(resetPasswordDTO.Identifier);
+                if (!string.IsNullOrEmpty(result.Email))
+                {
+                    return Ok(ResponseDTO.Accept(result: new
+                    {
+                        email = result.Email,
+                        username = result.Username,
+                        avatarURL = result.AvatarURL,
+                    }));
+                }
+
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.SomethingWrongMessage));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: error.Message));
+            }
+        }
+        [HttpPost("reset-password/send-email")]
+        public async Task<IActionResult> SendResetPasswordEmail([FromBody] ResetPasswordDTO resetPasswordDTO)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(resetPasswordDTO.Identifier))
+                {
+                    return BadRequest(ResponseDTO.BadRequest(message: AppString.RequestErrorMessage));
+                }
+
+                (string Token, string Email) = await _authService.GenerateResetPasswordToken(resetPasswordDTO.Identifier);
+                if (!string.IsNullOrEmpty(Token))
+                {
+                    string resetPasswordLink = $"{StaticDetails.FE_URL}/reset-password?token={Token}&email={Email}";
+
+                    var message = new EmailResponseDTO(new string[] { Email }, AppString.ResetPasswordSubjectEmail, AppString.ResetPasswordContentEmail(resetPasswordLink));
+
+                    _emailService.SendEmail(message);
+
+                    return Ok(ResponseDTO.Accept(message: AppString.ResetPasswordSendMailMessage, result: resetPasswordLink));
+                }
+
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.SomethingWrongMessage));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: error.Message));
+            }
+        }
+
+        [HttpPost("reset-password/verify-token")]
+        public async Task<IActionResult> VerifyEmailResetPassword([FromBody] VerifyEmailTokenRequestDTO verifyResetPasswordRequestDTO)
+        {
+            try
+            {
+                var isVerified = await _authService.VerifyEmailResetPassword(verifyResetPasswordRequestDTO.Email, verifyResetPasswordRequestDTO.Token);
+
+                if (isVerified)
+                {
+                    return Ok(ResponseDTO.Accept(message: AppString.EmailConfirmationSuccessMessage));
+                }
+
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.SomethingWrongMessage));
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: exception.Message));
+            }
+        }
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequestDTO resetPasswordRequestDTO)
+        {
+            try
+            {
+                if (resetPasswordRequestDTO == null)
+                {
+                    return BadRequest(ResponseDTO.BadRequest());
+                }
+
+
+                if (resetPasswordRequestDTO.NewPassword != resetPasswordRequestDTO.ConfirmPassword)
+                {
+                    return BadRequest(ResponseDTO.BadRequest(message: AppString.ConfirmPasswordMismatchErrorMessage));
+                }
+
+                var isVerifiedToken = await _authService.VerifyResetPasswordToken(resetPasswordRequestDTO.Email, resetPasswordRequestDTO.Token);
+
+                if (!isVerifiedToken)
+                {
+                    return BadRequest(ResponseDTO.BadRequest(AppString.InvalidTokenErrorMessage));
+                }
+
+                var result = await _authService.ResetPassword(resetPasswordRequestDTO);
+                if (result)
+                {
+                    return Ok(ResponseDTO.Accept(AppString.ResetPasswordSuccessMessage));
+                }
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.SomethingWrongMessage));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: error.Message));
+            }
+        }
+
+        [HttpPost("verify-email")]
+        public async Task<IActionResult> VerifyEmailConfirmation([FromBody] VerifyEmailTokenRequestDTO verifyResetPasswordRequestDTO)
+        {
+            try
+            {
+                var isVerified = await _authService.VerifyEmailConfirmation(verifyResetPasswordRequestDTO.Email, verifyResetPasswordRequestDTO.Token);
+
+                if (isVerified)
+                {
+                    return Ok(ResponseDTO.Accept(message: AppString.EmailConfirmationSuccessMessage));
+                }
+
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.SomethingWrongMessage));
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: exception.Message));
+            }
+        }
     }
 }
