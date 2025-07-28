@@ -18,13 +18,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.0" />
+    <PackageReference Include="MimeKit" Version="4.13.0" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NESTCOOKING_API.DataAccess\NESTCOOKING_API.DataAccess.csproj" />
-    <ProjectReference Include="..\NESTCOOKING_API.Testing\NESTCOOKING_API.Testing.csproj" />
     <ProjectReference Include="..\NESTCOOKING_API.Utility\NESTCOOKING_API.Utility.csproj" />
   </ItemGroup>
 
