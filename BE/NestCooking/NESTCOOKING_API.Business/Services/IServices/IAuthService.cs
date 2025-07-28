@@ -13,5 +13,7 @@ namespace NESTCOOKING_API.Business.Services.IServices
         Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO);
         Task<(string, string)> GenerateEmailConfirmationTokenAsync(string email);
         Task<bool> Register(RegistrationRequestDTO registrationRequestDTO);
+        Task<string> LoginWithThirdParty(OAuth2RequestDTO oAuth2RequestDTO, ProviderLogin providerLogin);
+
     }
 }

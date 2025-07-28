@@ -106,5 +106,64 @@ namespace NESTCOOKING_API.Presentation.Controllers
                 return BadRequest(ResponseDTO.BadRequest(message: error.Message));
             }
         }
+
+        [HttpPost("sign-in-facebook")]
+        public async Task<IActionResult> SignInWithFacebook([FromBody] OAuth2RequestDTO oAuth2RequestDTO)
+        {
+            if (string.IsNullOrEmpty(oAuth2RequestDTO.AccessToken))
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.InvalidTokenErrorMessage));
+            }
+            try
+            {
+
+                var token = await _authService.LoginWithThirdParty(oAuth2RequestDTO, ProviderLogin.FACEBOOK);
+
+                if (token == null)
+                {
+                    return BadRequest(ResponseDTO.BadRequest(message: "Authentication failed!"));
+                }
+
+                LoginResponseDTO loginResponseDTO = new()
+                {
+                    AccessToken = token
+                };
+
+                return Ok(ResponseDTO.Accept(result: loginResponseDTO));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(ResponseDTO.BadRequest(error.Message));
+            }
+        }
+
+        [HttpPost("sign-in-google")]
+        public async Task<IActionResult> SignInWithGoogle([FromBody] OAuth2RequestDTO oAuth2RequestDTO)
+        {
+            if (string.IsNullOrEmpty(oAuth2RequestDTO.AccessToken))
+            {
+                return BadRequest(ResponseDTO.BadRequest(message: AppString.InvalidTokenErrorMessage));
+            }
+            try
+            {
+                var token = await _authService.LoginWithThirdParty(oAuth2RequestDTO, ProviderLogin.GOOGLE);
+
+                if (token == null)
+                {
+                    return BadRequest(ResponseDTO.BadRequest(message: "Authentication failed!"));
+                }
+
+                LoginResponseDTO loginResponseDTO = new()
+                {
+                    AccessToken = token
+                };
+
+                return Ok(ResponseDTO.Accept(result: loginResponseDTO));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(ResponseDTO.BadRequest(error.Message));
+            }
+        }
     }
 }
