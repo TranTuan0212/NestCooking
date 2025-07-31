@@ -12,9 +12,9 @@ using NESTCOOKING_API.Utility;
 
 namespace NESTCOOKING_API.Presentation.Controllers
 {
-	[Route("api/admin")]
-	[ApiController]
-	[Authorize(StaticDetails.Role_Admin)]
+	[Route("api/admin")] 
+	[ApiController] 
+	[Authorize(StaticDetails.Role_Admin)] 
 	public class AdminController : ControllerBase
 	{
 		private PaginationInfoDTO _paginationInfo = new PaginationInfoDTO();

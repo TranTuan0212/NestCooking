@@ -19,11 +19,11 @@ namespace NESTCOOKING_API.Presentation.Controllers
     [Route("api/auth")]
     [ApiController]
     [AllowAnonymous]
-    public class AuthController : ControllerBase
+     public class AuthController : ControllerBase
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+         private readonly IHttpClientFactory _httpClientFactory;
 
-        private readonly IAuthService _authService;
+         private readonly IAuthService _authService;
         private readonly IEmailService _emailService;
         public AuthController(IAuthService authService, IEmailService emailService, IHttpClientFactory httpClientFactory)
         {
