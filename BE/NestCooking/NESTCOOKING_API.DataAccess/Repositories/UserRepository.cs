@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using NESTCOOKING_API.DataAccess.Data;
 using NESTCOOKING_API.DataAccess.Models;
 using NESTCOOKING_API.DataAccess.Repositories.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NESTCOOKING_API.Utility;
 
 namespace NESTCOOKING_API.DataAccess.Repositories
 {
@@ -81,30 +78,30 @@ namespace NESTCOOKING_API.DataAccess.Repositories
 
         public async Task<bool> Register(User newUser, string password)
         {
-            //if (!_roleManager.RoleExistsAsync(StaticDetails.Role_Admin).GetAwaiter().GetResult())
-            //{
-            //    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Admin));
-            //    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Chef));
-            //}
-            //if (!_roleManager.RoleExistsAsync(StaticDetails.Role_User).GetAwaiter().GetResult())
-            //{
-            //    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_User));
-            //}
+            if (!_roleManager.RoleExistsAsync(StaticDetails.Role_Admin).GetAwaiter().GetResult())
+            {
+                await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Admin));
+                await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Chef));
+            }
+            if (!_roleManager.RoleExistsAsync(StaticDetails.Role_User).GetAwaiter().GetResult())
+            {
+                await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_User));
+            }
 
-            //var roleId = await _roleRepository.GetRoleIdByNameAsync(StaticDetails.Role_User);
-            //newUser.RoleId = roleId;
-            //var result = await _userManager.CreateAsync(newUser, password).ConfigureAwait(false);
+            var roleId = await _roleRepository.GetRoleIdByNameAsync(StaticDetails.Role_User);
+            newUser.RoleId = roleId;
+            var result = await _userManager.CreateAsync(newUser, password).ConfigureAwait(false);
 
-            //if (!result.Succeeded)
-            //{
-            //    throw new Exception(result.Errors.FirstOrDefault()?.Description);
-            //}
+            if (!result.Succeeded)
+            {
+                throw new Exception(result.Errors.FirstOrDefault()?.Description);
+            }
 
-            //var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == newUser.UserName);
-            //if (user == null)
-            //{
-            //    throw new Exception(AppString.SomethingWrongMessage);
-            //}
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == newUser.UserName);
+            if (user == null)
+            {
+                throw new Exception(AppString.SomethingWrongMessage);
+            }
 
             return true;
         }
