@@ -14,7 +14,9 @@ namespace NESTCOOKING_API.Presentation.Controllers
 	{
 		private readonly INotificationService _notificationService;
 
+
 		public NotificationController(INotificationService notificationService)
+		
 		{
 			_notificationService = notificationService;
 		}

@@ -12,7 +12,9 @@ namespace NESTCOOKING_API.Presentation.Controllers
 	public class IngredientTipController : ControllerBase
 	{
 		private PaginationInfoDTO _paginationInfo = new PaginationInfoDTO();
+
 		private IIngredientTipService _ingredientTipService;
+
 
 		public IngredientTipController(IIngredientTipService ingredientTipService)
 		{
