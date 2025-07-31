@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NESTCOOKING_API.DataAccess.Models;
+using Newtonsoft.Json.Linq;
 
 namespace NESTCOOKING_API.DataAccess.Repositories.IRepositories
 {

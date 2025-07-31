@@ -49,26 +49,26 @@ namespace NESTCOOKING_API.Business.ServiceManager
 
 			service.AddScoped<IUserRepository, UserRepository>();
 			service.AddScoped<IRoleRepository, RoleRepository>();
-			service.AddScoped<IResponseRepository, ResponseRepository>();
-			service.AddScoped<IRequestBecomeChefRepository, RequestBecomeChefRepository>();
-			service.AddScoped<ICategoryRepository, CategoryRepository>();
+			//service.AddScoped<IResponseRepository, ResponseRepository>();
+			//service.AddScoped<IRequestBecomeChefRepository, RequestBecomeChefRepository>();
+			//service.AddScoped<ICategoryRepository, CategoryRepository>();
 			service.AddScoped<IIngredientTipContentRepository, IngredientTipContentRepository>();
 			service.AddScoped<IIngredientTipRepository, IngredientTipRepository>();
 			service.AddScoped<IIngredientRepository, IngredientRepository>();
 			service.AddScoped<IRecipeRepository, RecipeRepository>();
-			service.AddScoped<ICategoryRecipeRepository, CategoryRecipeRepository>();
+			//service.AddScoped<ICategoryRecipeRepository, CategoryRecipeRepository>();
 			service.AddScoped<IInstructorRepository, InstructorRepository>();
-			service.AddScoped<IFavoriteRecipeRepository, FavoriteRecipeRepository>();
+			//service.AddScoped<IFavoriteRecipeRepository, FavoriteRecipeRepository>();
 			service.AddScoped<IOAuthRepository, OAuthRepository>();
 			service.AddScoped<IReportRepository, ReportRepository>();
 			service.AddScoped<IReactionRepository, ReactionRepository>();
-			service.AddScoped<ICommentRepository, CommentRepository>();
+			//service.AddScoped<ICommentRepository, CommentRepository>();
 			service.AddScoped<IUserConnectionRepository, UserConnectionRepository>();
 			service.AddScoped<ITransactionRepository, TransactionRepository>();
-			service.AddScoped<INotificationRepository, NotificationRepository>();
+			//service.AddScoped<INotificationRepository, NotificationRepository>();
 			service.AddScoped<IPurchasedRecipesRepository, PurchasedRecipesRepository>();
-			service.AddScoped<IBookingLineRepository, BookingLineRepository>();
-			service.AddScoped<IBookingRepository, BookingRepository>();
+			//service.AddScoped<IBookingLineRepository, BookingLineRepository>();
+			//service.AddScoped<IBookingRepository, BookingRepository>();
 
 			// For admin statistic
 			service.AddSingleton<IStatisticRepository, StatisticRepository>();
@@ -103,8 +103,8 @@ namespace NESTCOOKING_API.Business.ServiceManager
 			service.AddScoped<ITransactionService, TransactionService>();
 			service.AddScoped<INotificationService, NotificationService>();
 			service.AddScoped<IPurchasedRecipesService, PurchasedRecipesService>();
-			service.AddScoped<IBookingService, BookingService>();
-			service.AddScoped<IBookingLineService, BookingLineService>();
+			//service.AddScoped<IBookingService, BookingService>();
+			//service.AddScoped<IBookingLineService, BookingLineService>();
 
 			#endregion Services
 

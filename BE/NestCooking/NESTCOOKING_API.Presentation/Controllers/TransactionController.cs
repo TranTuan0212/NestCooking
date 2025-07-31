@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NESTCOOKING_API.API.Helpers;
 using NESTCOOKING_API.Business.DTOs;
 using NESTCOOKING_API.Business.DTOs.PaymentDTOs;
 using NESTCOOKING_API.Business.DTOs.TransactionDTOs;
 using NESTCOOKING_API.Business.Services;
 using NESTCOOKING_API.Business.Services.IServices;
 using NESTCOOKING_API.DataAccess.Models;
+using NESTCOOKING_API.Presentation.Helpers;
 using NESTCOOKING_API.Utility;
 using System.Net;
 using System.Security.Claims;

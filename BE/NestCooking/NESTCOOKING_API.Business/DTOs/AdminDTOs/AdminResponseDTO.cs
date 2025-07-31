@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NESTCOOKING_API.Business.DTOs.UserDTOs;
 
-namespace NESTCOOKING_API.Business.DTOs.AdminDTOs
+namespace NESTCOOKING_API.Business.DTOs.ResponseDTOs
 {
-    internal class AdminResponseDTO
+	public class AdminResponseDTO
     {
+        public UserDetailInfoDTO User { get; set; }
+        public string Title { get; set; } = null!;
+        public string Content { get; set; } = null!;
     }
 }

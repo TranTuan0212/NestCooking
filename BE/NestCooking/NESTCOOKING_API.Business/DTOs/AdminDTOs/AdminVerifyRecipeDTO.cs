@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NESTCOOKING_API.Business.DTOs.AdminDTOs
+﻿namespace NESTCOOKING_API.Business.DTOs.AdminDTOs
 {
-    internal class AdminVerifyRecipeDTO
-    {
-    }
+	public class AdminVerifyRecipeDTO
+	{
+		public string RecipeId { get; set; } = null!;
+		public string Status { get; set; } = null!;
+	}
 }
