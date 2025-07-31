@@ -24,6 +24,7 @@ namespace NESTCOOKING_API.Presentation.Controllers
 		[HttpGet("{userId}")]
 		public async Task<IActionResult> GetUserById(string userId)
 		{
+
 			try
 			{
 				if (userId == null)
@@ -41,6 +42,7 @@ namespace NESTCOOKING_API.Presentation.Controllers
 		}
 		[HttpGet]
 		[Authorize]
+		
 		public async Task<IActionResult> GetInfo()
 		{
 			var userId = HttpContext.User.FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;

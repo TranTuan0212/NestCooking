@@ -22,6 +22,7 @@ namespace NESTCOOKING_API.Presentation.Controllers
         private readonly ITransactionService _transactionService;
         private readonly IUserService _userService;
         private readonly IPurchasedRecipesService _purchasedRecipesService;
+        
 
         public TransactionController(IPaymentService paymentService, ITransactionService transactionService, IUserService userService, IPurchasedRecipesService purchasedRecipesService)
         {
