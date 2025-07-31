@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NESTCOOKING_API.DataAccess.Models
 {
-    public class PurchasedRecipe
-    {
-        [Key]
-        public string Id { get; set; }
-        public string UserId { get; set; }
+	public class PurchasedRecipe
+	{
+		[Key]
+		public string Id { get; set; }
+		public string UserId { get; set; }
         public User User { get; set; }
         public string RecipeId { get; set; }
         public Recipe Recipe { get; set; }
