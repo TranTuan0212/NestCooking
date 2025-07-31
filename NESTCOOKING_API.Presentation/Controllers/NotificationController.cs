@@ -19,9 +19,9 @@ namespace NESTCOOKING_API.Presentation.Controllers
 			_notificationService = notificationService;
 		}
 
-		[HttpGet]
+		[HttpGet] 
 		public async Task<IActionResult> GetAllNotificationsAsync()
-		{
+		{ 
 			try
 			{
 				var userId = AuthenticationHelper.GetUserIdFromContext(HttpContext);

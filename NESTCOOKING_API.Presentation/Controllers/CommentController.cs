@@ -11,10 +11,10 @@ namespace NESTCOOKING_API.Presentation.Controllers
 {
 	[Route("api/comments")]
 	[ApiController]
-	public class CommentController : ControllerBase
+ 	public class CommentController : ControllerBase
 	{
 		private readonly ICommentService _commentService;
-		private readonly INotificationService _notificationService;
+ 		private readonly INotificationService _notificationService;
 
 		public CommentController(ICommentService commentService, INotificationService notificationService)
 		{
