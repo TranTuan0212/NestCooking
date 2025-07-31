@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NESTCOOKING_API.Business.DTOs.AdminDTOs
+﻿namespace NESTCOOKING_API.Business.DTOs.AdminDTOs
 {
-    internal class AdminLockUserDTO
-    {
-    }
+	public class AdminLockUserDTO
+	{
+		public string UserId { get; set; } = null!;
+		public int Minute { get; set; }
+	}
 }
