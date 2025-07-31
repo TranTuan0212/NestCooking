@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using NESTCOOKING_API.Utility;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using NESTCOOKING_API.Business.DTOs.PaymentDTOs;
+using NESTCOOKING_API.Utility;
+using Microsoft.Extensions.Configuration;
 
 namespace NESTCOOKING_API.Business.Libraries
 {
@@ -28,48 +29,48 @@ namespace NESTCOOKING_API.Business.Libraries
             _responseData = new SortedList<string, string>(new VnPayCompare());
         }
 
-        //public PaymentResponse GetFullResponseData(IQueryCollection collection)
-        //{
+        public PaymentResponse GetFullResponseData(IQueryCollection collection)
+        {
 
-        //    foreach (var (key, value) in collection)
-        //    {
-        //        if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
-        //        {
-        //            AddResponseData(key, value);
-        //        }
-        //    }
-        //    var orderId = GetResponseData("vnp_TxnRef");
-        //    var amount = Convert.ToDouble(GetResponseData("vnp_Amount"));
-        //    var vnPayTranId = Convert.ToInt64(GetResponseData("vnp_TransactionNo"));
-        //    var vnpResponseCode = GetResponseData("vnp_ResponseCode");
-        //    var vnpSecureHash = collection.FirstOrDefault(k => k.Key == "vnp_SecureHash").Value; //hash của dữ liệu trả về
-        //    var orderInfo = GetResponseData("vnp_OrderInfo");
-        //    var vnpTransactionStatus = GetResponseData("vnp_TransactionStatus");
-        //    var checkSignature = ValidateSignature(vnpSecureHash, hashSecret); //check Signature
-        //    var paymentResponse = new PaymentResponse
-        //    {
-        //        Amount = amount,
-        //        Success = true,
-        //        PaymentMethod = "VnPay",
-        //        OrderDescription = orderInfo,
-        //        OrderId = orderId.ToString(),
-        //        PaymentId = vnPayTranId.ToString(),
-        //        TransactionId = vnPayTranId.ToString(),
-        //        Token = vnpSecureHash,
-        //        VnPayResponseCode = vnpResponseCode
-        //    };
-        //    if (vnpResponseCode == "00" && vnpTransactionStatus == "00")
-        //    {
-        //        return paymentResponse;
+            foreach (var (key, value) in collection)
+            {
+                if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
+                {
+                    AddResponseData(key, value);
+                }
+            }
+            var orderId = GetResponseData("vnp_TxnRef");
+            var amount = Convert.ToDouble(GetResponseData("vnp_Amount"));
+            var vnPayTranId = Convert.ToInt64(GetResponseData("vnp_TransactionNo"));
+            var vnpResponseCode = GetResponseData("vnp_ResponseCode");
+            var vnpSecureHash = collection.FirstOrDefault(k => k.Key == "vnp_SecureHash").Value; //hash của dữ liệu trả về
+            var orderInfo = GetResponseData("vnp_OrderInfo");
+            var vnpTransactionStatus = GetResponseData("vnp_TransactionStatus");
+            var checkSignature = ValidateSignature(vnpSecureHash, hashSecret); //check Signature
+                var paymentResponse = new PaymentResponse
+                {
+                    Amount = amount,
+                    Success = true,
+                    PaymentMethod = "VnPay",
+                    OrderDescription = orderInfo,
+                    OrderId = orderId.ToString(),
+                    PaymentId = vnPayTranId.ToString(),
+                    TransactionId = vnPayTranId.ToString(),
+                    Token = vnpSecureHash,
+                    VnPayResponseCode = vnpResponseCode
+                };
+                if (vnpResponseCode == "00" && vnpTransactionStatus == "00")
+                {
+                    return paymentResponse;
 
 
-        //    }
-        //    else
-        //    {
-        //        paymentResponse.Success = false;
-        //        return paymentResponse;
-        //    }
-        //}
+                }
+                else
+                {
+                    paymentResponse.Success = false;
+                    return paymentResponse;
+                }
+        }
         public string GetIpAddress(HttpContext context)
         {
             var ipAddress = string.Empty;
